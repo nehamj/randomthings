@@ -1,0 +1,11 @@
+
+  .flexContainer .detailsCard {
+    color: grey;
+    height: 80vh;
+    width: 70vw;
+    margin-top: -32vh;
+    margin-left: -32vw;
+    -webkit-box-shadow: 5px 19px 38px rgba(0,0,0,.3),0 1px 12px rgba(0,0,0,.22);
+    box-shadow: 5px 19px 38px rgba(0,0,0,.3),0 1px 12px rgba(0,0,0,.22);
+    background:  #272727;
+  }
