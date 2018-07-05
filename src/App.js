@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {Cards} from './cards'; 
 import {DetailsCard} from './details-card';
-import {TweenMax, Power1} from "gsap/TweenMax";
+import {TweenMax, Power1, TweenLite} from "gsap/TweenMax";
 import { PictureCard } from './picture-card';
 
 class App extends Component {
@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       cardVisible: true,
     }
+    this.click=0;
     this.e1;
     this.e2;
     this.card;
@@ -28,10 +29,12 @@ class App extends Component {
  onClick() {
     this.setState(prevState => ({ cardVisible: !prevState.cardVisible}));
     if(!this.state.cardVisible){
+      this.click=1;
       TweenMax.to(this.pic,4,{opacity:0.2,scale:0})
       TweenMax.to(this.card,4,{scale:1.25 ,x:25 })
     }
     else{
+      this.click=0;
       TweenMax.to(this.pic,4,{opacity:1,scale:1})
       TweenMax.to(this.card,4,{scale:1})
     }
@@ -47,7 +50,7 @@ class App extends Component {
           <div id="container2">
             <div className="box one">
             <div id="maincard1" onClick={() => this.onClick()}>
-            <div className="card"><Cards /></div>
+            <div className="card"><Cards visible={this.click} /></div>
             <div className="pic-card"> <PictureCard /></div>
             </div>
             </div>
