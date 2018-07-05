@@ -9,8 +9,6 @@ export class Cards extends React.Component{
               <div  className="card">
               <p className="centered">koo kko xo xoxo xoxo</p>
               </div>
-              <div id="picture-card" className={"picture-card"} >
-              </div>
             </div>  
         );
     }

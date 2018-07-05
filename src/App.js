@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import {Cards} from './cards'; 
 import {DetailsCard} from './details-card';
-import {TweenMax, Power2, TimelineLite} from "gsap/TweenMax";
+import {TweenMax, Power1} from "gsap/TweenMax";
+import { PictureCard } from './picture-card';
 
 class App extends Component {
   constructor() {
@@ -10,14 +11,30 @@ class App extends Component {
     this.state = {
       cardVisible: true,
     }
+    this.e1;
+    this.e2;
+    this.card;
+    this.pic;
   }
 
   componentDidMount(){
-    const e1=document.getElementById("maincard1");
-    TweenMax.from(e1, 2, {opacity:0,ease: Power2.easeOut});
+    this.e1=document.getElementById("maincard1");
+    this.e2=document.getElementById("maincard2");
+    this.card=document.getElementsByClassName("card");
+    this.pic=document.getElementsByClassName("pic-card");
+    TweenMax.fromTo(this.e1, 2,{top:"0%",x:"120%",autoAlpha: 0} ,{ autoAlpha: 1,opacity:0,ease: Power1.easeOut,left:"50%",top:"50%",xPercent:-50,yPercent:50});
+    
   }
  onClick() {
     this.setState(prevState => ({ cardVisible: !prevState.cardVisible}));
+    if(!this.state.cardVisible){
+      TweenMax.to(this.pic,4,{opacity:0.2,scale:0})
+      TweenMax.to(this.card,4,{scale:1.25 ,x:25 })
+    }
+    else{
+      TweenMax.to(this.pic,4,{opacity:1,scale:1})
+      TweenMax.to(this.card,4,{scale:1})
+    }
   }
 
   cardClick(){
@@ -30,11 +47,12 @@ class App extends Component {
           <div id="container2">
             <div className="box one">
             <div id="maincard1" onClick={() => this.onClick()}>
-            {this.state.cardVisible? <Cards/>: <DetailsCard/>}
+            <div className="card"><Cards /></div>
+            <div className="pic-card"> <PictureCard /></div>
             </div>
             </div>
             <div className="box two">
-              <div onClick={() => this.onClick()}>
+              <div id="maincard2" onClick={() => this.onClick()}>
             {this.state.cardVisible? <Cards />: <DetailsCard/>}
             </div>
             </div>
